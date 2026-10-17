@@ -1,0 +1,23 @@
+{
+  "skill_name": "windows-disk-cleanup",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "my C drive is almost full, like 35 GB left out of 1 TB. can you figure out what is eating it and what I can safely delete? don't delete anything yet",
+      "expected_output": "A tiered report (safe to delete now / move to another drive / needs admin / uninstall if unused / keep it from coming back) with sizes and exact paths, based on a real scan of C:. Hard-linked caches measured by real size, Docker/WSL disks and crash dumps identified, nothing deleted, and an offer to list commands.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Docker Desktop seems to be taking a huge chunk of C:. How much is it really using, what inside it is junk, and how do I get the space back without losing my volumes?",
+      "expected_output": "Finds Docker's virtual disk file and its size, separates images by unique size (dangling images share layers), treats unused volumes as possible data (creation date / contents), reports growth headroom inside the VM, and gives move-to-another-drive and compact options as user-run commands that keep volumes.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Go through my AppData and Temp and list the cache folders I can clear, with exact paths and PowerShell commands. I'll run the deletes myself.",
+      "expected_output": "A list of cache folders under AppData and Temp with sizes and exact paths, verified as not in use, with copy-paste PowerShell (Remove-Item -LiteralPath, tool-native cleaners) and close-the-app/admin notes. Claude does not delete anything itself.",
+      "files": []
+    }
+  ]
+}
